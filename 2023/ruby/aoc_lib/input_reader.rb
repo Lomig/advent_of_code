@@ -35,9 +35,9 @@ class MatrixReader < RawInputReader
 
   def read
     File.open(file_name)
-        .each_char
-        .with_object([[]], &populate_matrix)
-        .then { |matrix| Matrix[*matrix] }
+      .each_char
+      .with_object([[]], &populate_matrix)
+      .then { |matrix| Matrix[*matrix] }
   end
 
   def populate_matrix = lambda { |char, matrix|
@@ -48,10 +48,10 @@ class MatrixReader < RawInputReader
       next
     end
 
-    if formatter.is_a?(Proc)
-      matrix.last << formatter.call(char, row, column)
+    matrix.last << if formatter.is_a?(Proc)
+      formatter.call(char, row, column)
     else
-      matrix.last << char.send(formatter)
+      char.send(formatter)
     end
 
     increase_column
