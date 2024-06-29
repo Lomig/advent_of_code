@@ -1,0 +1,14 @@
+*
+!/**/
+!*.*
+
+*.hi
+*.o
+
+.DS_Store
+_build/
+
+dist-newstyle/
+
+.idea/
+
