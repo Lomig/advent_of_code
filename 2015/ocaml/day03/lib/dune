@@ -1,0 +1,5 @@
+(library
+ (name aoc_2015_day03)
+ (public_name aoc_2015.day03)
+ (modules solution1 solution2 coordinates)
+ (libraries containers))
