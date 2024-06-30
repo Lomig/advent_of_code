@@ -1,0 +1,5 @@
+(library
+ (name aoc_2015_day04)
+ (public_name aoc_2015.day04)
+ (modules solution1 solution2)
+ (libraries containers domainslib))
