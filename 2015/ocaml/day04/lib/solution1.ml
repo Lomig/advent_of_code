@@ -7,10 +7,7 @@ let has_hash_zeroes hash =
 ;;
 
 let check_suffix secret_key suffix =
-  secret_key ^ string_of_int suffix
-  |> Digest.MD5.string
-  |> Digest.MD5.to_hex
-  |> has_hash_zeroes
+  secret_key ^ string_of_int suffix |> Digest.string |> Digest.to_hex |> has_hash_zeroes
 ;;
 
 let rec find_first_match_in_range secret_key start finish =
