@@ -1,0 +1,5 @@
+(library
+ (name aoc_2015_day12)
+ (public_name aoc_2015.day12)
+ (modules solution1 solution2)
+ (libraries containers re yojson))
