@@ -11,7 +11,7 @@ class AoC
 
   def initialize
     @reader = InputReader.new(
-      file_name: "#{self.class.name.downcase}_input.txt",
+      file_name: File.expand_path("../_inputs/#{"%02d" % self.class.day}.txt", __dir__),
       structure: self.class.structure || :array,
       formatter: self.class.formatter || :itself
     )
@@ -22,7 +22,11 @@ class AoC
   def_delegators :reader, :raw_input
 
   class << self
-    attr_reader :structure, :formatter
+    attr_reader :structure, :formatter, :day
+
+    def current_day(day)
+      @day = day
+    end
 
     def input_as(structure, formatter: nil)
       @structure = structure
