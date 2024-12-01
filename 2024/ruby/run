@@ -1,0 +1,37 @@
+#!/usr/bin/env ruby
+
+# frozen_string_literal: true
+
+SKIPPED = {}
+
+def result_or_skipped(day:, part:)
+  return "*** SKIPPED ***" if SKIPPED["#{day}.#{part}"]
+
+  Kernel.const_get("Day#{day}").new.send("result#{part}")
+end
+
+puts
+puts "Advent of Code 2024 — Ruby Edition"
+puts "-" * 40
+
+day, part = ARGV.map(&:to_i).first(2)
+
+first_day = day || 1
+last_day = day || 24
+
+parts = part ? [part] : [1, 2]
+
+first_day.upto(last_day) do |day|
+  padded_current_day = "Day%02d" % day
+  current_day = "Day#{day}"
+  break unless Dir.exist?(padded_current_day)
+
+  Dir.chdir(padded_current_day) do
+    require_relative padded_current_day + "/" + current_day
+
+    parts.each do |part|
+      print "Day #{day} — Result #{part}: "
+      puts result_or_skipped(day:, part:)
+    end
+  end
+end
