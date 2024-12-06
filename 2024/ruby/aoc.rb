@@ -10,9 +10,10 @@ class AoC
   private attr_reader :reader, :input
 
   def initialize
+    input_filename = "%02d" % self.class.name.delete_prefix("Day").to_i
     @reader = InputReader.new(
       input: self.class.input,
-      file_name: File.expand_path("../_inputs/#{"%02d" % self.class.day}.txt", __dir__),
+      file_name: File.expand_path("../_inputs/#{input_filename}.txt", __dir__),
       structure: self.class.structure || :array,
       formatter: self.class.formatter || :itself
     )
@@ -23,11 +24,7 @@ class AoC
   def_delegators :reader, :raw_input
 
   class << self
-    attr_reader :structure, :formatter, :day, :input
-
-    def current_day(day)
-      @day = day
-    end
+    attr_reader :structure, :formatter, :input
 
     def input_as(structure, formatter: nil)
       @structure = structure

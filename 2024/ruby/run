@@ -2,7 +2,9 @@
 
 # frozen_string_literal: true
 
-SKIPPED = {}
+SKIPPED = {
+  "6.2" => true,
+}
 
 def result_or_skipped(day:, part:)
   return "*** SKIPPED ***" if SKIPPED["#{day}.#{part}"]

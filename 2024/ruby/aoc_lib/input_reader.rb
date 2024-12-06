@@ -25,7 +25,7 @@ end
 class ArrayReader < RawInputReader
   def read = lines.map(&formatter)
 
-  def lines = input&.split("\n") || File.readlines(file_name, chomp: true)
+  def lines = input&.chomp&.split("\n") || File.readlines(file_name, chomp: true)
 end
 
 class MatrixReader < RawInputReader
@@ -37,7 +37,8 @@ class MatrixReader < RawInputReader
   end
 
   def read
-    (input || File.open(file_name))
+    (input || File.read(file_name))
+      .chomp
       .each_char
       .with_object([[]], &populate_matrix)
       .then { |matrix| Matrix[*matrix] }
