@@ -1,0 +1,5 @@
+(library
+ (name aoc_2024_day07)
+ (public_name aoc_2024.day07)
+ (modules solution1 solution2)
+ (libraries containers))
