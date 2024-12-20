@@ -5,6 +5,7 @@
 SKIPPED = {
   "6.2" => true,
   "7.2" => true,
+  "20.2" => true
 }
 
 def result_or_skipped(day:, part:)
