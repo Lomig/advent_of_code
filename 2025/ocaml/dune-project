@@ -14,7 +14,7 @@
 (package
  (name aoc_2025)
  (synopsis "Advent of Code 2025 — Ocaml Edition")
- (depends ocaml containers)
+ (depends ocaml containers pcre)
  (tags
  (aoc ocaml)))
 
