@@ -17,3 +17,10 @@ module Input = struct
     | _ -> lines
   ;;
 end
+
+module List = struct
+  let first = function
+    | [] -> failwith "the list is empty"
+    | x :: _ -> x
+  ;;
+end
