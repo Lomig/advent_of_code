@@ -25,14 +25,14 @@ module Make (E : ELEMENT) = struct
 
   let make ?(init = E.empty) rows cols : t =
     match rows < 0 || cols < 0 with
-    | true -> invalid_arg "Matrix.make: negative dimension"
+    | true -> invalid_arg "Grid.make: negative dimension"
     | false ->
       Array.init rows (fun i -> Array.init cols (fun j -> E.with_coords i j init))
   ;;
 
   let init rows cols (f : int -> int -> element) : t =
     match rows < 0 || cols < 0 with
-    | true -> invalid_arg "Matrix.init: negative dimension"
+    | true -> invalid_arg "Grid.init: negative dimension"
     | false ->
       Array.init rows (fun i -> Array.init cols (fun j -> E.with_coords i j (f i j)))
   ;;
@@ -48,15 +48,12 @@ module Make (E : ELEMENT) = struct
     | true -> Some m.(i).(j)
   ;;
 
-  let ( .%() ) m (i, j) = get m i j
-
   let set (m : t) i j element =
     match are_in_bounds m i j with
-    | false -> invalid_arg "Matrix.get: index out of bounds"
+    | false -> invalid_arg "Grid.get: index out of bounds"
     | true -> m.(i).(j) <- element
   ;;
 
-  let ( .%()<- ) m (i, j) element = set m i j element
   let map (f : element -> element) (m : t) = Array.map (fun row -> Array.map f row) m
 
   let mapi (f : int -> int -> element -> element) (m : t) =
